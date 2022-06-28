@@ -20,7 +20,7 @@ function Single_blog({setblogdetail}) {
   const fetch_blogs_by_category = async () => {
     const { category } = JSON.parse(localStorage.getItem("blogdetail"))
 
-    const res1 = await fetch(`http://localhost:5000/api/blog/blogs_by_category/${category}`)
+    const res1 = await fetch(`${process.env.REACT_APP_SERVER_HOST}/api/blog/blogs_by_category/${category}`)
 
     const json1 = await res1.json();
 
