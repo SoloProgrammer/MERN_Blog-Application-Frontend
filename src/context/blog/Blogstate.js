@@ -1,9 +1,7 @@
 import { useState } from "react";
 import blogcontext from "./blogcontext";
-
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Navigate, useNavigate } from "react-router-dom";
 
 const Blogstate = (props) => {
 
@@ -50,11 +48,14 @@ const Blogstate = (props) => {
 
     }
 
-
     const fetch_single_blog = async (blogid) => {
         const res = await fetch(`http://localhost:5000/api/blog/blog_by_id/${blogid}`);
 
         const json = await res.json();
+
+        if(json.status === false){
+            return false
+        }
 
         setblog(json.blog_by_id);
 
@@ -63,6 +64,7 @@ const Blogstate = (props) => {
         setTimeout(() => {
             setload(false)
         }, 200);
+
     }
 
     const like_blog = async (blogid) => {
@@ -78,7 +80,7 @@ const Blogstate = (props) => {
     }
 
     const post_commnet = async (comment, blogid) => {
-        // console.log(comment, blogid)
+
         const res = await fetch(`${host}/api/blog/Addcomments/${blogid}`,
             {
                 method: "PUT",
@@ -103,11 +105,10 @@ const Blogstate = (props) => {
 
         const json = await res.json();
 
-        // console.log(json)
     }
 
     const del_comment = async (comm_id, blogid) => {
-        // console.log(blogid, comm_id)
+
         const res = await fetch(`${host}/api/blog/Delete_comment/${blogid}`, {
             method: "PUT",
             headers: {
@@ -119,7 +120,7 @@ const Blogstate = (props) => {
 
         if (json.status === "success") {
             fetch_single_blog(blogid);
-            //    alert("comment deleted sucessfully..")
+
             toast.info("Comment deleted sucessfully!", {
                 position: "top-right",
                 autoClose: 1600,
@@ -133,7 +134,7 @@ const Blogstate = (props) => {
     }
 
     const like_comment = async (blogid, comm_id, comm_index) => {
-        // console.log(comm_id,comm_index)
+
         const res = await fetch(`${host}/api/blog/like_Comment/${blogid}`, {
             method: "PUT",
             headers: {
@@ -146,7 +147,7 @@ const Blogstate = (props) => {
     }
 
     const dislike_comment = async (blogid, comm_id, comm_index) => {
-        // console.log(comm_id,comm_index)
+
         const res = await fetch(`${host}/api/blog/dislike_Comment/${blogid}`, {
             method: "PUT",
             headers: {

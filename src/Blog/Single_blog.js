@@ -29,21 +29,31 @@ function Single_blog({setblogdetail}) {
 
   const [Blogid, setblogid] = useState('');
 
-  useEffect(() => {
+  const apicalls = async () =>{
     if (localStorage.getItem("blogdetail") !== String(undefined)) {
 
       const { blogid } = JSON.parse(localStorage.getItem("blogdetail"))
 
       setblogid(blogid)
-      fetch_single_blog(blogid);
       fetch_blogs_by_category();
+      const a = await fetch_single_blog(blogid);
+      if(a === false){
+        navigate('/')
+      }
       Getuser();
 
     }
     else {
 
-      navigate('/Blogs')
+      navigate('/')
     }
+
+  }
+
+  useEffect(() => {
+
+    apicalls()
+
   }, [effectkey])
 
   const [comminpt, setcomminpt] = useState('')
@@ -86,6 +96,21 @@ function Single_blog({setblogdetail}) {
     para_2 = blog.desc.slice(758);
   }
 
+  const Handle_delete_blog = async (blogid) =>{
+
+    console.log(blogid)
+    
+    const res = await fetch(`${process.env.REACT_APP_SERVER_HOST}/api/blog/Delete_blog/${blogid}`,{
+      method:"DELETE"
+    })
+
+    // const json = await res.json();
+    
+    // console.log(json)
+    navigate('/')
+    
+  }
+
   // console.log()
 
   return (
@@ -96,7 +121,13 @@ function Single_blog({setblogdetail}) {
       </div>
       <div className="flex-1">
         <div className="singleblog">
-          <h3 className='text-center gray '>{blog.title}</h3>
+          <h3 className='text-center gray pos-rel'>
+            {blog.title}
+            {blog.user === userdetail.id && <div className="actionsdiv">
+              <i onClick={()=>{Handle_delete_blog(Blogid)}} className="fa-solid fa-trash"></i>
+              <i className="fa-solid fa-pen-to-square"></i>
+            </div>}
+          </h3>
           {load ? <img src={`${loader}`} className="load1" alt="" /> : <img className='blogimg-1 m-b-2' src={`${process.env.REACT_APP_IMAGE_PATH_NAME}/${blog.blogimg}`} />}
           <p className=' heart_p'>
             <span>by - @{blog.author_name}</span>
