@@ -11,7 +11,7 @@ function Signup(props) {
 
     })
     let navigate = useNavigate();
-    const host = "http://localhost:5000"
+    const host = process.env.REACT_APP_SERVER_HOST;
     const Onchange = (e) => {
         setCredentails({ ...credentials, [e.target.name]: e.target.value })
     }

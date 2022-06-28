@@ -7,7 +7,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 
 const Blogstate = (props) => {
 
-    const host = "http://localhost:5000"
+    const host = process.env.REACT_APP_SERVER_HOST
 
     const [blog, setblog] = useState({})
 
