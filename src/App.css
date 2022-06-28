@@ -660,7 +660,7 @@ label {
   animation: pop .2s infinite linear;
 }
 .thumb_up:active {
-  animation: like .3s infinite linear;
+  animation: like .35s infinite linear;
 }
 
 
@@ -668,7 +668,7 @@ label {
 
   0%,
   100% {
-    transform: scale(1.5) translateY(-.2em) rotate(-30deg);
+    transform: scale(1.5) translateY(-.2em) rotate(-35deg);
   }
 
   50% {

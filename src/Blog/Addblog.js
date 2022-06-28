@@ -81,7 +81,7 @@ function Addblog({ setblogdetail }) {
             Form.append('category', category)
             Form.append('blogimage', file)
 
-            const res = await fetch('http://localhost:5000/api/blog/Addblog',
+            const res = await fetch(`${process.env.REACT_APP_SERVER_HOST}/api/blog/Addblog`,
                 {
                     method: "POST",
                     headers: {
@@ -175,7 +175,7 @@ function Addblog({ setblogdetail }) {
                             blogs.map(blog => {
                                 return blog.Blikearr.includes(userdetail.id) && (
                                     <Link key={blog._id} to='/singleblog'><div onClick={() => { Handle_click(blog._id, blog.category) }} className="liked_blog ">
-                                        <img src={`http://localhost:5000/uploads/${blog.blogimg}`} alt="" className='l-b-img' />
+                                        <img src={`${process.env.REACT_APP_IMAGE_PATH_NAME}/${blog.blogimg}`} alt="" className='l-b-img' />
                                         <p className='txt_deco_none'>{blog.title}</p>
                                         <span className='like_desc'>{DESc(blog.desc)}..</span>
                                     </div></Link>
