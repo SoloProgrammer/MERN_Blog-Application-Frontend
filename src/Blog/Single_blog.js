@@ -102,7 +102,7 @@ function Single_blog({setblogdetail}) {
 
     console.log(blogid)
 
-    let sure = window.confirm("are youu sure")
+    let sure = window.confirm("Are you sure you want to delete this post!")
     if(!sure) return;
     
     

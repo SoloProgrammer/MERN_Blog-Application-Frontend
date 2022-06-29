@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import blogcontext from '../context/blog/blogcontext'
-
+import blogcontext from '../context/blog/blogcontext';
 
 function Navbar(props) {
 

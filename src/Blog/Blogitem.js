@@ -1,27 +1,16 @@
 import React from 'react'
 function Blogitem({ blog, setdesc }) {
 
-  const getdate = (isodate) => {
+  const getpostedAt = (isodate) => {
     const newdate = new Date(isodate);
     const newstrdate = String(newdate);
-    return newstrdate.slice(0, 11)
-  }
-  const gettime = (isodate) => {
-    const newdate = new Date(isodate);
     var hours = newdate.getHours()
     const minute = newdate.getMinutes();
     hours = (hours % 12) || 12;
-    return (hours + ":" + minute);
-  }
-
-  const get_am_pm = (isodate) => {
-    const newdate = new Date(isodate);
-    let hours = newdate.getHours();
     let ampm = hours < 12 ? "am" : "pm"
-    return ampm;
+    return ( newstrdate.slice(0, 11) + " (" + hours + " : " + minute + ".00" + ") " + " - " +  ampm);
   }
-
-  get_am_pm(blog.createdAt)
+  
   return (
     <div className="blogitems">
       <div className="category">
@@ -32,7 +21,7 @@ function Blogitem({ blog, setdesc }) {
       </div>
       <div className="blog_content">
         <div className="showdate comm_font">
-          <i className="fa-solid fa-clock-rotate-left mx-2"></i>{getdate(blog.createdAt)} {gettime(blog.createdAt)} - {get_am_pm(blog.createdAt)}
+          <i className="fa-solid fa-clock-rotate-left mx-2"></i>{getpostedAt(blog.createdAt)}
         </div>
         <div className="heart_comm">
           <div className="like">

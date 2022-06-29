@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useContext} from 'react'
+import React,{useEffect, useContext} from 'react'
 import Blogitem from './Blogitem';
 import loader from '../loader/loader.gif';
 import blogcontext from '../context/blog/blogcontext';
