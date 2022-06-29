@@ -554,7 +554,20 @@ label {
   align-items: center;
   justify-content: center;
   gap: .5em;
+  box-shadow: 0 6px 10px rgb(0 0 0 / 30%);
+  padding: .3em;
+  background: white;
+  border-radius: .3em;
 }
+
+.actionsdiv i:nth-child(1){
+  color: #ff4343;
+}
+.actionsdiv i:nth-child(2){
+  
+  color: deepskyblue;
+}
+
 .actionsdiv i{
   font-size: .6em;
 
@@ -1026,27 +1039,44 @@ label {
 }
 
 .blog_not_found {
-  position: absolute;
-  top: 72%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3em;
-  width: fit-content;
-  color: #bfbfbf;
-  font-weight: 600;
+    width: -moz-fit-content;
+    width: fit-content;
+    color: #bfbfbf;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-top: 3em;
+    font-size: 2em;
+    padding: .4em .4em;
 }
 
 .blog_not_found img {
-  width: 5em;
-  margin-top: .7em;
+  width: 6em;
+  margin-top: -0.3em;
+  z-index: 99;
 }
 
 .yellow_cat {
-  color: #ffcb5c;
+  color: #e7d744;
 }
 
 .green_cat {
   color: rgb(18, 177, 18);
+}
+.black_cat {
+  color: rgb(55, 55, 55);
+}
+.purple_cat{
+  color: rgb(200, 48, 227);
+}
+.orange_cat{
+  color: rgb(248, 126, 20);
+}
+.blue_cat{
+  color: rgb(31, 134, 237);
 }
 
 .blog_image {
@@ -1054,9 +1084,16 @@ label {
   object-fit: cover;
   border-radius: .5em;
 }
+.showdate{
+  text-align: center;
+  font-size: .9em;
+  margin-bottom: .6em;
+  font-weight: 600;
+  color: #7a7a7a;
+}
 
 .m-b-24 {
-  margin-bottom: 24em;
+  margin-bottom: 10em;
 }
 
 /* Category navigation css ends here */
@@ -1507,6 +1544,19 @@ a:hover{
   100% {
     transform: rotate(360deg)
   }
+}
+
+.firstone{
+  margin-top: -1em;
+  display: flex;
+  flex-direction: column;
+  gap: .7em;
+  font-size: 1.6em;
+  align-items: center;
+}
+.firstone img{
+  width: 10em;
+  z-index: 9999;
 }
 
 /* Addblogs css ends here.................. */

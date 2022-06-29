@@ -11,7 +11,7 @@ function Single_blog({setblogdetail}) {
 
   const Bcontext = useContext(blogcontext)
 
-  const {userdetail, Getuser,effectkey,seteffectkey, blog, fetch_single_blog, comments, load, like_blog, post_commnet, del_comment, like_comment, dislike_comment } = Bcontext;
+  const {userdetail, Getuser,effectkey,seteffectkey, blog, fetch_single_blog, comments, load, like_blog, post_commnet, del_comment, like_comment, dislike_comment,setload } = Bcontext;
 
   const [categoryblogs, setcategoryblogs] = useState([])
 
@@ -53,6 +53,8 @@ function Single_blog({setblogdetail}) {
   useEffect(() => {
 
     apicalls()
+    window.scrollTo(0,0)
+    setload(true)
 
   }, [effectkey])
 
@@ -99,19 +101,19 @@ function Single_blog({setblogdetail}) {
   const Handle_delete_blog = async (blogid) =>{
 
     console.log(blogid)
+
+    let sure = window.confirm("are youu sure")
+    if(!sure) return;
+    
     
     const res = await fetch(`${process.env.REACT_APP_SERVER_HOST}/api/blog/Delete_blog/${blogid}`,{
       method:"DELETE"
     })
 
-    // const json = await res.json();
-    
-    // console.log(json)
     navigate('/')
     
   }
 
-  // console.log()
 
   return (
     <>
@@ -124,7 +126,7 @@ function Single_blog({setblogdetail}) {
           <h3 className='text-center gray pos-rel'>
             {blog.title}
             {blog.user === userdetail.id && <div className="actionsdiv">
-              <i onClick={()=>{Handle_delete_blog(Blogid)}} className="fa-solid fa-trash"></i>
+              <i onClick={()=>{Handle_delete_blog(Blogid)}} class="fa-solid fa-trash-can"></i>
               <i className="fa-solid fa-pen-to-square"></i>
             </div>}
           </h3>

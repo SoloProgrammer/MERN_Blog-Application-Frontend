@@ -37,7 +37,7 @@ function Category_blogs({categoryblogs,seteffectkey,effectkey,blog,setblogdetail
                 <i className="fa-solid fa-eye"></i>
                 <i className="fa-solid red fa-heart"></i>
               </div>
-              <img className='blogimg2 m-b-2' src={`http://localhost:5000/uploads/${catblog.blogimg}`} />
+              <img className='blogimg2 m-b-2' src={`${process.env.REACT_APP_IMAGE_PATH_NAME}/${catblog.blogimg}`} />
             </div>
             </div>)
         })

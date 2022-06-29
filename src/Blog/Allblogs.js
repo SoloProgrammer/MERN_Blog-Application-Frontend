@@ -9,16 +9,12 @@ import Category_navigation from './Category_navigation';
 function Allblogs({setblogdetail}) {
 
   const Bcontext = useContext(blogcontext);
-  const {fetchallblogs,blogs,category,Getuser} = Bcontext;
+  const {fetchallblogs,blogs,category,Getuser,load,setload} = Bcontext;
 
-  const [load,setload] = useState(true)
-
-  if(blogs.length > 0 ){
+ 
     setTimeout(() => {
       setload(false)
     }, 300);
-
-  }
 
   const setdesc = (desc) =>{
       let newdesc = desc.slice(0,80);
@@ -35,14 +31,17 @@ function Allblogs({setblogdetail}) {
     fetchallblogs();
     localStorage.removeItem('blogdetail')
     Getuser();
+    
   },[])
+
 
   return (
     <>
     <header className='blog_header'>
       <img src="https://care.wcwpds.wisc.edu/wp-content/uploads/sites/1321/2020/04/iStock-1127167754-1600x500.jpg" alt=""/>
     </header>
-      {load && <div className='loader1' >
+    
+      {load && blogs.length > 0 && <div className='loader1' >
         <img className="loader load" src={loader} alt=""/>
         <p>Fething Blogs...</p>
       </div>}
@@ -63,10 +62,10 @@ function Allblogs({setblogdetail}) {
             The Blog of category 
             { category === 'Sports' && <span className='yellow_cat'> {category}  </span>}
             { category === 'Nature' && <span className='green_cat'> {category}  </span>}
-            { category === 'Travel' && <span className='yellow_cat'> {category}  </span>}
-            { category === 'Spiritual' && <span className='yellow_cat'> {category}  </span>}
-            { category === 'Fitness' && <span className='yellow_cat'> {category}  </span>}
-            { category === 'Technical' && <span className='yellow_cat'> {category}  </span>}
+            { category === 'Travel' && <span className='purple_cat'> {category}  </span>}
+            { category === 'Spiritual' && <span className='orange_cat'> {category}  </span>}
+            { category === 'Fitness' && <span className='black_cat'> {category}  </span>}
+            { category === 'Technical' && <span className='blue_cat'> {category}  </span>}
             is not Posted yet !!
           </p>
         </div> 
@@ -77,7 +76,7 @@ function Allblogs({setblogdetail}) {
       <div className="write_btn">
         <Link className='write_blog_btn' to='/addblog'>  <span><i className="fa-solid fa-pen-clip"></i></span> <span>Write blog</span> </Link>  
       </div>
-      <Category_navigation />
+     <Category_navigation />
     </>
   )
 }

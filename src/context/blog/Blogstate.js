@@ -49,7 +49,7 @@ const Blogstate = (props) => {
     }
 
     const fetch_single_blog = async (blogid) => {
-        const res = await fetch(`http://localhost:5000/api/blog/blog_by_id/${blogid}`);
+        const res = await fetch(`${host}/api/blog/blog_by_id/${blogid}`);
 
         const json = await res.json();
 
@@ -161,13 +161,14 @@ const Blogstate = (props) => {
 
     const fetchallblogs = async () => {
 
-        const res = await fetch('http://localhost:5000/api/blog/Allblogs');
+        setload(true)
+
+        const res = await fetch(`${host}/api/blog/Allblogs`);
 
         const json = await res.json();
 
         if (json.status) {
             setBlogs(json.allblogs);
-
         }
     }
 
@@ -181,6 +182,8 @@ const Blogstate = (props) => {
         }
 
         setBlogs(json.blogs_by_category)
+
+        // setload(false)
 
     }
 

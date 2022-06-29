@@ -8,7 +8,7 @@ function Category_navigation() {
 
     const Handleclick = (id,category) => {
 
-        setload(true)
+        // setload(true)
 
         const all_li = document.querySelectorAll('.act');
 
