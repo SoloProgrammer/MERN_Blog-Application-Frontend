@@ -16,6 +16,7 @@ function Addblog({ setblogdetail }) {
     useEffect(() => {
         fetchallblogs();
         Getuser();
+        window.scrollTo(0,0)
     }, [])
 
     const DESc = (desc) => {
@@ -59,9 +60,11 @@ function Addblog({ setblogdetail }) {
     
     const handle_add_blog = async () => {
         const { title, desc, category, file } = Form_inputs;
-        
-        if (!title || !desc || !file) {
-            toast.error("PLz filled all the details", {
+
+        const add_btn = document.querySelector('.add_btn');
+
+        function showtoast (msg){
+            toast.error(`${msg}`, {
                 position: "top-center",
                 autoClose: 1000,
                 hideProgressBar: false,
@@ -71,9 +74,17 @@ function Addblog({ setblogdetail }) {
                 progress: undefined,
             });
         }
+        
+        if (!title || !desc) {
+            showtoast("PLz filled all the details!");
+        }
+        else if(!file){
+            showtoast("PLz upload an image file!");
+        }
         else {
             
             setupload("uploading");
+
             const Form = new FormData();
 
             Form.append('title', title)
@@ -93,7 +104,7 @@ function Addblog({ setblogdetail }) {
             const json = await res.json();
 
             setTimeout(() => {
-                setupload("Uploading done")
+                setupload("Uploading done");
             }, 700);
 
 
@@ -154,7 +165,7 @@ function Addblog({ setblogdetail }) {
                                 <input onChange={Onchange} id='file' name='file' type="file" />
                             </div>
                         </div>
-                        <button disabled={upload === "uploading" ? true : false} onClick={handle_add_blog} className='add_btn'>
+                        <button disabled={upload === "uploading" || upload === "Uploading done"} onClick={handle_add_blog} className='add_btn'>
                            {!upload && <i className="mx-2 fa-solid fa-cloud-arrow-up"></i> }
                             {upload === "uploading" && <i className="mx-2 animate fa-solid fa-circle-notch"></i> }
                             {upload === "Uploading done" && <i className="mx-2 fa-solid fa-circle-check"></i> } 
@@ -176,7 +187,7 @@ function Addblog({ setblogdetail }) {
                                 return blog.Blikearr.includes(userdetail.id) && (
                                     <Link key={blog._id} to='/singleblog'><div onClick={() => { Handle_click(blog._id, blog.category) }} className="liked_blog ">
                                         <img src={`${process.env.REACT_APP_IMAGE_PATH_NAME}/${blog.blogimg}`} alt="" className='l-b-img' />
-                                        <p className='txt_deco_none'>{blog.title}</p>
+                                        <p className='txt_deco_none text-center'>{blog.title}</p>
                                         <span className='like_desc'>{DESc(blog.desc)}..</span>
                                     </div></Link>
                                 )

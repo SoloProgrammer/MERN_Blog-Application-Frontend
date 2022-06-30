@@ -1,7 +1,7 @@
 import React,{useContext} from 'react'
 import blogcontext from '../context/blog/blogcontext';
 
-function Category_navigation() {
+function Category_navigation({open,setopen}) {
 
     const Bcontext = useContext(blogcontext);
     const { fetchallblogs, fetch_category_blogs,setcategory,setload } = Bcontext;
@@ -31,7 +31,7 @@ function Category_navigation() {
 
     return (
         <>
-            <div className="sidebar comm_font">
+            <div className={` ${open && "open"} sidebar comm_font`}>
                 <ul>
                     <li onClick={() => { Handleclick('li1','All') }} id='li1' className='act active'>
                         <div className="li_con">

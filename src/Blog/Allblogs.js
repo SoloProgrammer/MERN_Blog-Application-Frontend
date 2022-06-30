@@ -1,4 +1,4 @@
-import React,{useEffect, useContext} from 'react'
+import React,{useEffect, useContext, useState} from 'react'
 import Blogitem from './Blogitem';
 import loader from '../loader/loader.gif';
 import blogcontext from '../context/blog/blogcontext';
@@ -34,6 +34,17 @@ function Allblogs({setblogdetail}) {
     
   },[])
 
+  const [open,setopen] = useState(false);
+
+  const Handle_open_close = () =>{
+    if(open){
+      setopen(false)
+    }
+    else{
+      setopen(true)
+    }
+  }
+
 
   return (
     <>
@@ -58,7 +69,7 @@ function Allblogs({setblogdetail}) {
           <div className="not_found_img">
             <img src="https://www.brightpearl.com/wp-content/uploads/2020/12/humanerrors.png" alt="" />
           </div>
-          <p>
+          <p className='text-center'>
             The Blog of category 
             { category === 'Sports' && <span className='yellow_cat'> {category}  </span>}
             { category === 'Nature' && <span className='green_cat'> {category}  </span>}
@@ -76,7 +87,10 @@ function Allblogs({setblogdetail}) {
       <div className="write_btn">
         <Link className='write_blog_btn' to='/addblog'>  <span><i className="fa-solid fa-pen-clip"></i></span> <span>Write blog</span> </Link>  
       </div>
-     <Category_navigation />
+     <Category_navigation open={open} setopen={setopen}/>
+     <div className="open_close_btn" onClick={Handle_open_close}>
+       <i class={`fa-solid ${open ? "fa-chevron-right" : "fa-chevron-left"}`}></i><i class="fa-solid fa-list"></i>
+     </div>
     </>
   )
 }
