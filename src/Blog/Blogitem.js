@@ -7,7 +7,7 @@ function Blogitem({ blog, setdesc }) {
     var hours = newdate.getHours()
     const minute = newdate.getMinutes();
     hours = (hours % 12) || 12;
-    let ampm = hours < 12 ? "am" : "pm"
+    let ampm = hours < 12 ? "pm" : "am"
     return ( newstrdate.slice(0, 11) + " (" + hours + " : " + minute + ".00" + ") " + " - " +  ampm);
   }
   

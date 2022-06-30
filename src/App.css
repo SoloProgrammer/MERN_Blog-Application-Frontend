@@ -1581,7 +1581,7 @@ a:hover{
 .open_close_btn{
   position: fixed;
   bottom: 1.8em;
-  right: 0em;
+  right: -1em;
   border-radius: .4em;
   padding: .3em;
   background-color: white;
@@ -1590,6 +1590,7 @@ a:hover{
   justify-content: center;
   align-items: center;
   display: none;
+  width: 4em;
 }
 .open_close_btn i:nth-child(1){
   font-size: 1.2em;
@@ -1723,6 +1724,11 @@ a:hover{
 }
 
 @media (max-width: 500px) {
+
+  .h2::after {
+    height: 8px;
+    background: #d4d4d4;
+}
   .open_close_btn{
     display: block;
   }

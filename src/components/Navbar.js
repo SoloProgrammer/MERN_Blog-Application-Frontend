@@ -16,7 +16,7 @@ function Navbar(props) {
     navigate("/Login")
   }
   const click1 = (msg) => {
-    props.show_Alert(msg, "danger");
+    
   }
 
   return (
@@ -38,7 +38,7 @@ function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              {<Link onClick={() => { !localStorage.getItem("token") && click1("Login First to acesss inotebook Home page") }} className={`nav-link ${loaction.pathname === "/" ? "active" : ""}`} aria-current="page" to="/">Home</Link>}
+              {<Link onClick={() => { !localStorage.getItem("token") && click1("Login First to acesss Blog_App") }} className={`nav-link ${loaction.pathname === "/" ? "active" : ""}`} aria-current="page" to="/">Home</Link>}
             </li>
             <li className="nav-item">
               <Link className={`nav-link ${loaction.pathname === "/about" ? "active" : ""}`} to="/about">About</Link>

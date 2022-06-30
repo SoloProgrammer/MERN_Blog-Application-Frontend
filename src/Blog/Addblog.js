@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import blogcontext from '../context/blog/blogcontext'
 import { Link,useNavigate } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 function Addblog({ setblogdetail }) {
     const Bcontext = useContext(blogcontext);
@@ -110,7 +110,18 @@ function Addblog({ setblogdetail }) {
 
             setTimeout(() => {
                 navigate('/')
+                toast.success("Blog posted sucessfully../", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             }, 1500 );
+
+            
 
         }
 
@@ -133,7 +144,7 @@ function Addblog({ setblogdetail }) {
         <>
             <div className='comm_font global_div'>
                 <div className="formbox">
-                    <h4>Add a blog  </h4>
+                    <h4>Add a new blog  </h4>
                     <div className="inputs">
 
                         <div className="Input_box top">
@@ -205,16 +216,6 @@ function Addblog({ setblogdetail }) {
                     </div>}
                 </div>
             </div>
-
-            <ToastContainer position="top-center"
-                autoClose={1600}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover />
 
         </>
     )

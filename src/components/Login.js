@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
+import { toast } from 'react-toastify';
+
 function Login(props) {
 
 
@@ -14,6 +16,19 @@ function Login(props) {
     const Onchange = (e) => {
         setCredentails({ ...credentials, [e.target.name]: e.target.value })
     }
+
+    function showtoast(msg) {
+        toast.success(`${msg}`, {
+            position: "top-right",
+            autoClose: 1000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
+
     const Handlesubmit = async (e) => {
 
         e.preventDefault()
@@ -38,19 +53,38 @@ function Login(props) {
         else {
 
             if (json.success === true) {
-                props.show_Alert("Loggin Sucessfull,Add Notes now!!", "success")
-                navigate("/") //// async function in nature
+                // props.show_Alert("Loggin Sucessfull,Add Notes now!!", "success")
+                props.setkey(Math.random(10) * 10);
+                toast.success("Loggin Sucessfull, Welcome to Blog_Home page", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                localStorage.setItem('token', json.authToken)
+                setTimeout(() => {
+                    navigate("/") //// async function in nature
+                    
+                }, 100);
                 setCredentails({
                     email: "",
                     password: "",
                 })
 
-                // console.log(json)
-                localStorage.setItem('token', json.authToken)
-
             }
             else {
-                props.show_Alert(json.errormsg, "danger");
+                toast.error(json.errormsg, {
+                    position: "top-right",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             }
 
         }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import blogcontext from '../context/blog/blogcontext';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -111,6 +111,15 @@ function Single_blog({setblogdetail}) {
     })
 
     navigate('/')
+    toast.success("Your Blog has been removed", {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+  });
     
   }
 
@@ -126,7 +135,7 @@ function Single_blog({setblogdetail}) {
           <h3 className='text-center gray pos-rel'>
             {blog.title}
             {blog.user === userdetail.id && <div className="actionsdiv">
-              <i onClick={()=>{Handle_delete_blog(Blogid)}} class="fa-solid fa-trash-can"></i>
+              <i onClick={()=>{Handle_delete_blog(Blogid)}} className="fa-solid fa-trash-can"></i>
               <i className="fa-solid fa-pen-to-square"></i>
             </div>}
           </h3>
@@ -194,15 +203,6 @@ function Single_blog({setblogdetail}) {
 
        <Category_blogs toast={toast} seteffectkey = {seteffectkey} effectkey = {effectkey} setblogdetail = {setblogdetail} categoryblogs={categoryblogs} blog={blog} />
 
-      <ToastContainer position="top-right"
-        autoClose={1600}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover />
     </>
   )
 }

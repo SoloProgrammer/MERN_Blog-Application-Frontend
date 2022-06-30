@@ -2,10 +2,11 @@ import './App.css';
 import Navbar from './components/Navbar';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import About from './components/About';
+import { ToastContainer } from 'react-toastify';
 import Blogstate from './context/blog/Blogstate';
 import Login from './components/Login';
 import Signup from './components/Signup';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Allblogs from './Blog/Allblogs';
 import Single_blog from './Blog/Single_blog';
 import Addblog from './Blog/Addblog';
@@ -24,7 +25,8 @@ function App() {
       setAlert(null)
     }, 3000);
   }
-  
+
+
 
   const [blogdetail, setblogdetail] = useState();
 
@@ -32,36 +34,52 @@ function App() {
     localStorage.setItem('blogdetail', JSON.stringify(blogdetail))
   }
 
+  const[key,setkey] = useState(0)
 
   return (
     <>
-        <Blogstate>
-          <BrowserRouter>
-            <Navbar show_Alert={show_Alert} />
-            <Alert alert={alert} />
-            <Routes>
-
-              {
-
-                localStorage.getItem("token") ? <Route exact path="/" element={<Allblogs setblogdetail={setblogdetail} show_Alert={show_Alert} />} />
-                  : <Route exact path="/" element={<Login show_Alert={show_Alert} />} />
-              }
+      <Blogstate>
+        <BrowserRouter>
 
 
-              <Route exact path="/about" element={<About />} />
+          <ToastContainer position="top-right"
+            autoClose={1600}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover />
 
-              <Route  exact path="/singleblog" element={<Single_blog setblogdetail={setblogdetail} />} />
+          <Navbar show_Alert={show_Alert} />
+          <Alert alert={alert} />
+          <Routes>
 
-              <Route exact path="/Login" element={<Login show_Alert={show_Alert} />} />
+            {
 
-              <Route exact path="/Signup" element={<Signup show_Alert={show_Alert} />} />
+              localStorage.getItem("token") ? <Route exact path="/" element={<Allblogs key={key} setblogdetail={setblogdetail} show_Alert={show_Alert} />} />
+                : <Route exact path="/" element={<Login show_Alert={show_Alert} setkey={setkey}  />} />
+            }
 
-              <Route exact path="/addblog" element={<Addblog setblogdetail={setblogdetail} />} />
 
-            </Routes>
+            <Route exact path="/about" element={<About />} />
 
-          </BrowserRouter>
-        </Blogstate>
+            <Route exact path="/singleblog" element={<Single_blog setblogdetail={setblogdetail} />} />
+
+            <Route exact path="/Login" element={<Login setkey={setkey} />} />
+
+            <Route exact path="/Signup" element={<Signup show_Alert={show_Alert} />} />
+
+            <Route exact path="/addblog" element={<Addblog setblogdetail={setblogdetail} />} />
+
+          </Routes>
+
+
+
+        </BrowserRouter>
+      </Blogstate>
+
 
     </>
   );

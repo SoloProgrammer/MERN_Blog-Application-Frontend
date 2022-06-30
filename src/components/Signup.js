@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 
 function Signup(props) {
 
@@ -10,18 +11,31 @@ function Signup(props) {
         cpassword: ""
 
     })
+    function showtoast (msg){
+        toast.error(`${msg}`, {
+            position: "bottom-left",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+    }
     let navigate = useNavigate();
     const host = process.env.REACT_APP_SERVER_HOST;
     const Onchange = (e) => {
         setCredentails({ ...credentials, [e.target.name]: e.target.value })
     }
+
     const Handlesubmit = async (e) => {
         e.preventDefault();
 
         const { name1, email, password, cpassword } = credentials
 
         if (password !== cpassword) {
-           props.show_Alert("Password and confirm password must match..","danger")
+        //    props.show_Alert("Password and confirm password must match..","danger")
+        showtoast("Password and confirm password must match..");
         }
 
         else {
@@ -38,7 +52,6 @@ function Signup(props) {
 
             // console.log(res)
             const json = await res.json()
-            console.log(json)
 
             if (json.success === true) {
                 setCredentails({
@@ -47,15 +60,24 @@ function Signup(props) {
                     password: "",
                     cpassword: ""
                 })
-                // Redirect to login page
-                props.show_Alert("yayy!,Account Created Successfully ,Now You Can Login..Here","success")
+
+                toast.error(`${"yayy!,Account Created Successfully ,Now You Can Login..Here","success"}`, {
+                    position: "bottom-center",
+                    autoClose: 1000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
                 navigate("/Login")
             }
             else {
                 let errors = json.errors;
-                
-                errors && props.show_Alert(errors[0].msg,"danger")
-                json.errormsg && props.show_Alert(json.errormsg,"info")
+
+                errors && showtoast(errors[0].msg)
+
+                json.errormsg &&  showtoast(json.errormsg)
             }
         }
 
