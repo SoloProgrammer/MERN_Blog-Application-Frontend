@@ -76,10 +76,10 @@ function Addblog({ setblogdetail }) {
         }
         
         if (!title || !desc) {
-            showtoast("PLz filled all the details!");
+            showtoast("Plz filled all the details!");
         }
         else if(!file){
-            showtoast("PLz upload an image file!");
+            showtoast("Plz upload an image file!");
         }
         else {
             

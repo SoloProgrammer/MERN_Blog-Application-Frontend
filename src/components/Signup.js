@@ -61,8 +61,8 @@ function Signup(props) {
                     cpassword: ""
                 })
 
-                toast.error(`${"yayy!,Account Created Successfully ,Now You Can Login..Here","success"}`, {
-                    position: "bottom-center",
+                toast.success("yayy!,Account Created Successfully ,Now You Can Login..Here", {
+                    position: "top-right",
                     autoClose: 1000,
                     hideProgressBar: false,
                     closeOnClick: true,

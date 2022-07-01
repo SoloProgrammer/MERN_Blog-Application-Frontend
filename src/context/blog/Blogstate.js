@@ -183,13 +183,40 @@ const Blogstate = (props) => {
 
         setBlogs(json.blogs_by_category)
 
-        // setload(false)
+    }
 
+    const Reply_to_comments = async (rep,comm_id) =>{
+        
+        const res = await fetch(`${host}/api/blog/push_reply/${blog._id}`,
+        {
+            method:"PUT",
+            headers:{
+                "auth-token":localStorage.getItem('token'),
+                "Content-type":"application/json"
+            },
+            body:JSON.stringify({rep,comm_id})
+        })
+
+        fetch_single_blog(blog._id);
+    }
+
+    const delete_reply_of_comments = async (comm_id,rep_id) =>{
+
+        const res = await fetch(`${host}/api/blog/delete_reply/${blog._id}`,
+        {
+            method:"PUT",
+            headers:{
+                "Content-type":"application/json"
+            },
+            body:JSON.stringify({comm_id,rep_id})
+        })
+
+        fetch_single_blog(blog._id);
     }
 
     return (
 
-        <blogcontext.Provider value={{userdetail,Getuser, effectkey, seteffectkey, blogs, blog, comments, fetch_category_blogs, fetchallblogs, fetch_single_blog, like_blog, load, post_commnet, del_comment, like_comment, dislike_comment, setcategory, category, setload }}>
+        <blogcontext.Provider value={{userdetail,Getuser, effectkey, seteffectkey, blogs, blog, comments, fetch_category_blogs, fetchallblogs, fetch_single_blog, like_blog, load, post_commnet, del_comment, like_comment, dislike_comment, setcategory, category, setload,Reply_to_comments,delete_reply_of_comments }}>
             {props.children}
         </blogcontext.Provider>
 

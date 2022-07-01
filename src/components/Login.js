@@ -53,7 +53,7 @@ function Login(props) {
         else {
 
             if (json.success === true) {
-                // props.show_Alert("Loggin Sucessfull,Add Notes now!!", "success")
+
                 props.setkey(Math.random(10) * 10);
                 toast.success("Loggin Sucessfull, Welcome to Blog_Home page", {
                     position: "top-right",
@@ -64,11 +64,10 @@ function Login(props) {
                     draggable: true,
                     progress: undefined,
                 });
-                localStorage.setItem('token', json.authToken)
-                setTimeout(() => {
-                    navigate("/") //// async function in nature
-                    
-                }, 100);
+                localStorage.setItem('token', json.authToken);
+                
+                navigate("/") 
+                
                 setCredentails({
                     email: "",
                     password: "",
