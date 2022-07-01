@@ -119,17 +119,8 @@ const Blogstate = (props) => {
         const json = await res.json();
 
         if (json.status === "success") {
+            
             fetch_single_blog(blogid);
-
-            toast.info("Comment deleted sucessfully!", {
-                position: "top-right",
-                autoClose: 1600,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
         }
     }
 

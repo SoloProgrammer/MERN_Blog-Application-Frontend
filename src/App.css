@@ -298,11 +298,18 @@ label {
 
 }
 
+
+.fa-trash {
+  transition: .4s;
+}
+
 /*  */
 .fa-trash:active {
-  color: rgba(245, 36, 36, 0.745);
-  transition: .1s;
-  transform: scale(.8);
+  transition: .4s;
+  transform: scale(1.25) translateY(-.25em);
+  box-shadow: 0 10px 10px rgba(0 0 0 / 20%);
+  color: rgb(53, 53, 53);
+
 }
 
 .font_8 {
@@ -644,7 +651,7 @@ label {
   color: #323131;
 }
 
-.m-t-2{
+.m-t-2 {
   margin-top: 2em;
 }
 
@@ -1648,9 +1655,8 @@ a:hover {
 
 .open_close_btn {
   position: fixed;
-  bottom: 1.8em;
-  right: -1em;
-  border-radius: .4em;
+  bottom: 1.7em;
+  right: -1.7em;
   padding: .3em;
   background-color: white;
   box-shadow: 0 10px 10px rgb(0 0 0 / 20%);
@@ -1658,7 +1664,9 @@ a:hover {
   justify-content: center;
   align-items: center;
   display: none;
-  width: 4em;
+  width: 5em;
+  padding-left: .7em;
+  border-radius: 3.3em;
 }
 
 .open_close_btn i:nth-child(1) {
@@ -1790,30 +1798,81 @@ a:hover {
   opacity: 1;
 }
 
+/* Confrim box css starts here.................. */
 
+.confirmbox {
+  position: fixed;
+  left: 50%;
+  top: 2.5em;
+  transform: translateX(-50%);
+  font-size: 1.2em;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.727);
+  border-radius: .2em;
+  z-index: 1000;
+  padding: .4em .3em;
+  box-shadow: 0 10px 10px rgb(0 0 0 / 20%);
+  border-top: 1px solid rgb(0 0 0 / 10%);
+  border-left: 1px solid rgb(0 0 0 / 20%);
+  width: fit-content;
+  width: 30%;
+  opacity: 0;
+  pointer-events: none;
+  transition: .4s cubic-bezier(0.175, 0.885, 0.32, 2.275);
 
+}
 
+.blockwall {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 555;
+  display: none;
+}
 
+.active {
+  display: block;
+}
 
+.show_conf {
+  opacity: 1;
+  top: 3.5em;
+  pointer-events: all;
+}
 
+.confirmbox small {
+  font-size: .7em;
+  color: #105ee4;
+}
 
+.confirmbox .msg {
+  color: #201f1f;
+}
 
+.confirmbox .confirm_btns {
+  margin-top: .5em;
+  display: flex;
+  align-items: center;
+  gap: .3em;
+}
 
+.confirmbox .confirm_btns button {
+  border: 1px solid;
+  border-radius: .4em;
+  color: white;
+  font-size: .85em;
 
+}
 
+.confirmbox .confirm_btns button:nth-child(1) {
+  background-color: rgb(22, 233, 22);
+  border-color: rgb(4, 173, 4);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+.confirmbox .confirm_btns button:nth-child(2) {
+  background-color: rgb(249, 53, 53);
+  border-color: rgb(237, 10, 10);
+}
 
 
 
@@ -2067,6 +2126,10 @@ a:hover {
 
   .pos-rel {
     width: 80%;
+  }
+
+  .confirmbox {
+    width: 100%;
   }
 
 }

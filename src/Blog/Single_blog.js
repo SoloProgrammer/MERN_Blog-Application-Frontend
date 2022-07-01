@@ -87,6 +87,19 @@ function Single_blog({ setblogdetail }) {
   }
 
 
+  function showtoast(msg){
+    toast.success(`${msg}`, {
+      position: "top-center",
+      autoClose: 1500,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+
+
   const para_slice_1 = (para) => {
     let para_1 = para.slice(0, 758)
     return para_1;
@@ -108,16 +121,9 @@ function Single_blog({ setblogdetail }) {
       method: "DELETE"
     })
 
-    navigate('/')
-    toast.success("Your Blog has been removed", {
-      position: "top-center",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    navigate('/');
+
+    showtoast("Your Blog has been removed");
 
   }
 
@@ -170,29 +176,42 @@ function Single_blog({ setblogdetail }) {
     setreply_inpt(e.target.value);
   }
 
+  const Handle_delete_comm = (comm_id,blog_id) =>{
+    let confirm = window.confirm("Are you sure to delete this comment!");
+
+    if(!confirm){
+      return
+    }
+    
+    del_comment(comm_id,blog_id);
+
+    showtoast("Comment deleted sucessfully!");
+  }
+
   const Handle_post_reply = (index,id) =>{
 
     // index is needed bczz to remove classlist from rep_box which we find it by id i.e the index passing as a parameter in this function.
 
-    Reply_to_comments(reply_inpt,id) // fetch function destructure from blogcontext....
+    Reply_to_comments(reply_inpt,id) // this is the api fetch function destructure from blogcontext....
 
-    toast.success("Replied sucessfully..", {
-      position: "top-center",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
-        
+    showtoast("Replied sucessfully..");
+
     let rep_box = document.getElementById(`send_rep_box${index}`);
     rep_box.classList.remove('show_rep_box');
 
     setreply_inpt('');
   }
 
+  function show_confirm_box(){
+      const confirmbox = document.querySelector('.confirmbox');
+      const blockwall = document.querySelector('.blockwall');
+      blockwall.classList.add('active')
+      confirmbox.classList.add('show_conf')
+  }
+
   const Handle_delete_reply = (comm_id,rep_id) =>{
+
+    // show_confirm_box();
 
     const confirm = window.confirm("Are you sure to remove this reply..")
 
@@ -202,20 +221,26 @@ function Single_blog({ setblogdetail }) {
 
     delete_reply_of_comments(comm_id,rep_id);
 
-    toast.success("Reply deleted successfully..", {
-      position: "top-center",
-      autoClose: 1500,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    showtoast("Reply deleted successfully..");
+
   }
 
 
   return (
     <>
+    <div className="blockwall">
+
+    </div>
+    <div className="confirmbox comm_font">
+      <small>Confirm or not?</small>
+      <div className="msg">
+          Are you sure you want to delete this ?
+      </div>
+      <div className="confirm_btns">
+          <button type='button'>wait</button>
+          <button type='button'>yes,i am</button>
+      </div>
+    </div>
       <div className="h2">
         <h1> <span>Blogs</span> <span>/</span> <span>{blog.category}</span> </h1>
 
@@ -259,7 +284,7 @@ function Single_blog({ setblogdetail }) {
                       <span className='count mx-1'> {elm.Cdislikearr.length}</span>
                     </div>
                     {elm.name === userdetail.Name ? <div className="right icons">
-                      <i onClick={() => { del_comment(elm.comm_id, Blogid) }} className="fa-solid fa-trash-can"></i>
+                      <i onClick={() => { Handle_delete_comm(elm.comm_id, Blogid) }} className="fa-solid fa-trash-can"></i>
                       <i className="fa-solid fa-pen-to-square"></i>
                     </div>
                       : <div className='Rep comm_font cur_point' onClick={() => { showrepbox(index) }}>
