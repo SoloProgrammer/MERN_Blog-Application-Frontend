@@ -1,0 +1,243 @@
+.ShareBox{
+    position: fixed;
+    z-index: 99;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+.sharebtn{
+    position: relative;
+}
+.sharebtn i {
+    padding: .7rem;
+    border-radius: 50%;
+    font-size: 1.4rem;
+    color: rgb(132, 132, 132);
+    color: #0fb8f0;
+    margin: .1rem;
+    border: 1px solid transparent;
+    transition: .2s;
+    position: relative;
+    z-index: 1;
+  }
+  .sharebtn::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    z-index: -1;
+    transition: .3s all;
+    transform: scale(.5);
+}
+.sharebtn:active::before{
+    background: #c7eaff;
+    box-shadow: 0px 0px 14px rgba(0 0 0 / 30%);
+    transform: scale(1.2);
+  
+  }
+.Share_icons_box{
+    background: white;
+    width: 30rem;
+    height: fit-content;
+    position: relative;
+    padding: 1.8rem 2rem;
+    box-shadow: 0 3px 10px rgba(0,0,0,.4);
+    border-radius: .5rem;
+    transition: .3s all ease-in-out;
+}
+
+.copy_link{
+    width: 100%;
+}
+.copy_link .inpt{
+    position: relative;
+}
+.copy_link .inpt button{
+    position: absolute;
+    right: .15rem;
+    background: #fd0e36;
+    color: white;
+    border: none;
+    top: auto;
+    margin-top: .15rem;
+    border-radius: .3rem;
+    padding: .3rem .9rem;
+    
+}
+.c_b{
+    margin: .4rem 0rem;
+    display: inline-block;
+}
+.share_icon{
+    font-size: 1.3rem;
+    color: rgb(6, 171, 225);
+}
+.Share_icons_box p{
+    font-size: 1.1rem;
+}
+.copy_link .inpt .copied{
+    background: rgb(255, 54, 101);
+}
+.copy_link .inpt button:hover
+{
+    background: #da072a;
+
+}
+.copy_link input{
+    width: 100%;
+    padding: .4rem;
+    border: 1px solid rgba(0,0,0,.4);
+    border-radius: .3rem;
+    padding-right: 4.5rem;
+    
+}
+.show
+{
+    opacity: 1;
+    pointer-events: all;
+
+}
+.ShareBox .Share_icons_box .icons{
+    justify-content: space-around;
+}
+
+.ShareBox .Share_icons_box .fa-square-whatsapp{
+    color: #25d366;
+    opacity: 0;
+    transition-delay: .3s;
+}
+.ShareBox .Share_icons_box .fa-square-facebook{
+    color: #1877f2;
+    opacity: 0;
+    transition-delay: .2s;
+}
+.ShareBox .Share_icons_box .fa-linkedin{
+    color: #0077b5;
+    opacity: 0;
+    transition-delay: .4s;
+}
+.ShareBox .Share_icons_box .fa-square-pinterest{
+    color: #e60023;
+    opacity: 0;
+    transition-delay: .5s;
+}
+.ShareBox .Share_icons_box .fa-square-twitter{
+    color: #1da1f2;
+    opacity: 0;
+    transition-delay: .6s;
+}
+.ShareBox .Share_icons_box .fa-square-reddit{
+    color: #ff4500;
+    opacity: 0;
+    transition-delay: .7s;
+}
+.ShareBox .Share_icons_box .icons{
+    font-size: 2.5rem;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+.ShareBox .Share_icons_box .op1{
+    opacity: 1;
+}
+.share_top{
+    display: flex;
+    justify-content: space-between;
+}
+.share_top .hiteffect {
+    position: absolute;
+    right: .5rem;
+    top: .5rem;
+}
+.share_top .fa-xmark{
+    color: rgb(109, 109, 109);
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    right: 0;
+}
+.share_top .over_search::after{
+    z-index: 1;
+}
+.icon_btn{
+    position: relative;
+}
+
+.fa-xmark:hover{
+    color: black;
+}
+.icon_name{
+    background: hsla(0,0%,56%,.971);
+    border: 1px solid rgba(0,0,0,.25);
+    border-radius: 0.9rem;
+    color: #fff;
+    font-size: .7rem;
+    left: 50%;
+    opacity: 0;
+    padding: 0.12rem 0.5rem;
+    position: absolute;
+    top: -10px;
+    transform: translate(-50%);
+    transition: all .1s ease-in;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    z-index: 1;
+}
+.icon_btn:hover .icon_name{
+    top: -1.7rem;
+    opacity: 1;
+}
+.icon_name::before{
+    content: '';
+    position: absolute;
+    z-index: 0;
+    width: .6rem;
+    height: .6rem;
+    left: 50%;
+    transform: rotate(45deg) translateX(-50%);
+    background: rgba(143, 142, 142, 0.971);
+    bottom:-.5rem;
+}
+
+
+
+@media (max-width:500px){
+    .ShareBox .Share_icons_box{
+        padding: .8rem 1rem;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        transform: translateY(250px);
+        height: fit-content;
+        padding-bottom: 2rem;
+    }
+    .ShareBox .come1{
+        transform: translateY(0px);
+    }
+
+    .share_top .hiteffect {
+        position: absolute;
+        right: .5rem;
+        top: .5rem;
+    }
+}

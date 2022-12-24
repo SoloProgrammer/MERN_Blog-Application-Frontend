@@ -1,0 +1,9 @@
+{
+  "short_name": "Dev Blog_App",
+  "name": "Social Blog_App by Dev Shinde",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#08041d"
+}
+

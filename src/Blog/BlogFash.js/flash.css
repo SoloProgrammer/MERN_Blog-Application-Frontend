@@ -1,0 +1,129 @@
+.blocks {
+    display: flex;
+    flex-wrap: wrap;
+    /* margin-top: 5.3rem; */
+    gap: .3rem;
+    justify-content: space-evenly;
+    padding-bottom: 4rem;
+    z-index: 99;
+
+}
+
+.block {
+    width: 25rem;
+    /* border: 1px solid; */
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    gap: .3rem;
+    margin-top: 1rem;
+}
+
+.block div {
+    overflow: hidden;
+    /* background: rgba(255, 255, 255, .9); */
+    width: 100%;
+    background: rgb(211, 211, 211);
+    border-radius: .3rem;
+    position: relative;
+}
+
+.block div:before {
+    content: '';
+    position: absolute;
+    width: 30%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(255, 255, 255, .3);
+    animation: move 2s infinite linear;
+    /* backdrop-filter: blur(5px); */
+
+}
+.block div:nth-child(5)::before{
+    width: 50%;
+    animation-delay: -1s;
+}
+.block .author_block{
+    width: 100%;
+    /* border: 1px solid; */
+    margin-top: .2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.block .author_block div{
+    width: 39%;
+    height: 1.5rem;
+}
+.block .author_block div:nth-child(1){
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    margin-right: .3rem;
+
+}
+.block .like_comm_block{
+    display: flex;
+    justify-content: space-between;
+}
+.block .like_comm_block div{
+    width: 6rem;
+    height: 1.1rem;
+    background: rgb(211, 211, 211);
+
+}
+
+@keyframes move {
+
+    0% {
+        left: 0;
+    }
+
+    50% {
+        left: 140%;
+    }
+
+    100% {
+        left: -140%;
+    }
+
+}
+
+.block .img_block {
+    height: 16rem;
+}
+
+.block .time_block {
+    height: .9rem;
+    margin: auto;
+    width: 50%;
+    animation-delay: .8s;
+    transition-delay: 1s;
+}
+
+
+.block .title_block {
+    height: 1.4rem;
+    width: 70%;
+}
+
+.block .desc_block {
+    height: 2.3rem;
+    width: 100%;
+
+}
+
+@media (max-width:600px) {
+    .block .author_block div{
+        width:35%
+    }
+    .blocks {
+        margin-top: -1rem;
+        gap: 1.2rem;
+    }
+
+    .block {
+        width: 100%;
+    }
+}
